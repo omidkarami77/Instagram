@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/screens/switch_account_screen.dart';
 
 void main() {
   runApp(Application());
@@ -11,7 +12,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SwitchAccountScreen(),
     );
   }
 }
@@ -29,36 +30,32 @@ class SplashScreen extends StatelessWidget {
       )),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Column(
+          body: Stack(
+            alignment: AlignmentDirectional.bottomCenter,
             children: [
-              Expanded(
-                child: Center(
-                  child: Card(
-                    elevation: 10,
-                    color: Colors.transparent,
-                    child: Container(
-                      width: 155,
-                      height: 77,
-                      alignment: Alignment.center,
-                      child: Image(image: AssetImage('images/Startlogo.png')),
-                    ),
-                  ),
+              Center(
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  alignment: Alignment.center,
+                  child: Image(image: AssetImage('images/Startlogo.png')),
                 ),
               ),
-              Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
-                  child: Column(
-                    children: [
-                      Text(
-                        'From',
-                        style: TextStyle(color: Colors.red, fontSize: 20),
-                      ),
-                      Text(
-                        'Karami Company',
-                        style: TextStyle(color: Colors.red, fontSize: 20),
-                      ),
-                    ],
-                  ))
+              Positioned(
+                bottom: 32,
+                child: Column(
+                  children: [
+                    Text(
+                      "From",
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                    ),
+                    Text(
+                      "Karami Company",
+                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                    )
+                  ],
+                ),
+              )
             ],
           )),
     );
