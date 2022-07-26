@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/screens/switch_account_screen.dart';
+import 'package:instagram/login.dart';
+import 'package:instagram/screens/home_screens.dart';
 
 void main() {
   runApp(Application());
@@ -20,16 +21,17 @@ class Application extends StatelessWidget {
                 color: Colors.white)),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xffF35383),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              textStyle: TextStyle(
-                  fontFamily: 'GB', fontSize: 16, fontWeight: FontWeight.w700)),
+            backgroundColor: Color(0xffF35383),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            textStyle: TextStyle(
+                fontFamily: 'GB', fontSize: 16, fontWeight: FontWeight.w700),
+          ),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: SwitchAccountScreen(),
+      home: HomeScreen(),
     );
   }
 }
