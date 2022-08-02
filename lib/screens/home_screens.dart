@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:instagram/screens/share_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -45,14 +46,53 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: Color(0xff1C1F2E),
         body: SafeArea(
-          child: Center(
-            child: Column(children: [
-              getListStory(),
-              SizedBox(
-                height: 10,
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: ElevatedButton(
+                  child: Text("open bottom sheet"),
+                  onPressed: () {
+                    showModalBottomSheet(
+                        barrierColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return DraggableScrollableSheet(
+                              initialChildSize: 0.4,
+                              minChildSize: 0.2,
+                              maxChildSize: 0.7,
+                              builder: (context, controller) {
+                                return ShareBottomSheet(
+                                  controller: controller,
+                                );
+                              });
+                        });
+                  },
+                ),
               ),
-              Expanded(child: getPostList(imgList))
-            ]),
+              SliverToBoxAdapter(
+                child: getListStory(),
+              ),
+              SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                childCount: imgList.length,
+                (context, index) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 34,
+                      ),
+                      getHeaderPost(),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      getPostContent(imgList[index]),
+                    ],
+                  );
+                },
+              ))
+            ],
           ),
         ),
         bottomNavigationBar: Container(
