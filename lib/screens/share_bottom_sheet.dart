@@ -101,12 +101,38 @@ class ShareBottomSheet extends StatelessWidget {
         ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(((context, index) {
-            return Container(
-              color: Colors.red,
-            );
+            return _getItemGrid();
           }), childCount: 100),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, crossAxisSpacing: 20, mainAxisSpacing: 20),
+              mainAxisExtent: 110,
+              crossAxisCount: 4,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 10),
+        )
+      ],
+    );
+  }
+
+  Widget _getItemGrid() {
+    return Column(
+      children: [
+        Container(
+          width: 60,
+          height: 60,
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(
+              Radius.circular(15),
+            ),
+            child: Image.asset('images/omid.jpeg'),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          'omid karami',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontFamily: "GB", fontSize: 12, color: Colors.white),
         )
       ],
     );
