@@ -28,101 +28,101 @@ class _HomeScreenState extends State<HomeScreen> {
       'images/1.png',
     ];
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color(0xff1C1F2E),
-          title: Container(
-              width: 128,
-              height: 124,
-              child: Image.asset('images/moodinger_logo.png')),
-          actions: [
-            Container(
-              height: 24,
-              width: 24,
-              margin: EdgeInsets.only(right: 18),
-              child: Image.asset('images/icon_direct.png'),
-            )
-          ],
-        ),
+      appBar: AppBar(
+        elevation: 0,
         backgroundColor: Color(0xff1C1F2E),
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: ElevatedButton(
-                  child: Text("open bottom sheet"),
-                  onPressed: () {
-                    showModalBottomSheet(
-                        barrierColor: Colors.transparent,
-                        backgroundColor: Colors.transparent,
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (BuildContext context) {
-                          return DraggableScrollableSheet(
-                              initialChildSize: 0.4,
-                              minChildSize: 0.2,
-                              maxChildSize: 0.7,
-                              builder: (context, controller) {
-                                return ShareBottomSheet(
-                                  controller: controller,
-                                );
-                              });
-                        });
-                  },
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: getListStory(),
-              ),
-              SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                childCount: imgList.length,
-                (context, index) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 34,
-                      ),
-                      getHeaderPost(),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      getPostContent(imgList[index]),
-                    ],
-                  );
+        title: Container(
+            width: 128,
+            height: 124,
+            child: Image.asset('images/moodinger_logo.png')),
+        actions: [
+          Container(
+            height: 24,
+            width: 24,
+            margin: EdgeInsets.only(right: 18),
+            child: Image.asset('images/icon_direct.png'),
+          )
+        ],
+      ),
+      backgroundColor: Color(0xff1C1F2E),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: ElevatedButton(
+                child: Text("open bottom sheet"),
+                onPressed: () {
+                  showModalBottomSheet(
+                      barrierColor: Colors.transparent,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) {
+                        return DraggableScrollableSheet(
+                            initialChildSize: 0.4,
+                            minChildSize: 0.2,
+                            maxChildSize: 0.7,
+                            builder: (context, controller) {
+                              return ShareBottomSheet(
+                                controller: controller,
+                              );
+                            });
+                      });
                 },
-              ))
-            ],
-          ),
-        ),
-        bottomNavigationBar: Container(
-          height: 63,
-          width: 428,
-          decoration: BoxDecoration(
-            color: Color(0xff272B40),
-            borderRadius: const BorderRadius.only(
-                bottomRight: Radius.circular(15),
-                topRight: Radius.circular(15),
-                topLeft: Radius.circular(15),
-                bottomLeft: Radius.circular(15)),
-          ),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Image.asset("images/icon_home.png"),
-            Image.asset("images/icon_search.png"),
-            Image.asset("images/icon_add.png"),
-            Image.asset("images/heart.png"),
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              child: Container(
-                height: 35,
-                width: 35,
-                color: Colors.amber,
-                child: Image.asset('images/omid.jpeg'),
               ),
             ),
-          ]),
-        ));
+            SliverToBoxAdapter(
+              child: getListStory(),
+            ),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+              childCount: imgList.length,
+              (context, index) {
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 34,
+                    ),
+                    getHeaderPost(),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    getPostContent(imgList[index]),
+                  ],
+                );
+              },
+            ))
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 63,
+        width: 428,
+        decoration: BoxDecoration(
+          color: Color(0xff272B40),
+          borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(15),
+              topRight: Radius.circular(15),
+              topLeft: Radius.circular(15),
+              bottomLeft: Radius.circular(15)),
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          Image.asset("images/icon_home.png"),
+          Image.asset("images/icon_search.png"),
+          Image.asset("images/icon_add.png"),
+          Image.asset("images/heart.png"),
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            child: Container(
+              height: 35,
+              width: 35,
+              color: Colors.amber,
+              child: Image.asset('images/omid.jpeg'),
+            ),
+          ),
+        ]),
+      ),
+    );
   }
 
   Widget getListStory() {

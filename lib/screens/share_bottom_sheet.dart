@@ -15,100 +15,106 @@ class ShareBottomSheet extends StatelessWidget {
         child: Container(
           color: Color.fromRGBO(255, 255, 255, 0.20),
           padding: EdgeInsets.symmetric(horizontal: 40),
-          child: _getContent(),
+          child: _getContent(context),
         ),
       ),
     );
   }
 
-  Widget _getContent() {
-    // return GridView.builder(
-    //     controller: controller,
-    //     itemCount: 100,
-    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //       crossAxisSpacing: 20,
-    //       mainAxisSpacing: 20,
-    //       crossAxisCount: 4,
-    //     ),
-    //     itemBuilder: (BuildContext context, index) {
-    //       return Container(
-    //         color: Colors.red,
-    //       );
-    //     });
-
-    return CustomScrollView(
-      controller: controller,
-      slivers: [
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              Container(
-                height: 5,
-                width: 67,
-                margin: EdgeInsets.only(top: 10, bottom: 22),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(100))),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _getContent(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        CustomScrollView(
+          controller: controller,
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
                 children: [
-                  Text(
-                    'Share',
-                    style: TextStyle(
-                      fontFamily: 'GB',
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
+                  Container(
+                    height: 5,
+                    width: 67,
+                    margin: EdgeInsets.only(top: 10, bottom: 22),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
-                  Image.asset('images/icon_share_bottomsheet.png')
-                ],
-              ),
-              SizedBox(
-                height: 32,
-              ),
-              Container(
-                height: 46,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  color: Color.fromRGBO(255, 255, 255, 0.4),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset('images/icon_search.png'),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Expanded(
-                          child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search User',
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
+                      Text(
+                        'Share',
+                        style: TextStyle(
+                          fontFamily: 'GB',
+                          fontSize: 20,
+                          color: Colors.white,
                         ),
-                      )),
+                      ),
+                      Image.asset('images/icon_share_bottomsheet.png')
                     ],
                   ),
-                ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                  Container(
+                    height: 46,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: Color.fromRGBO(255, 255, 255, 0.4),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          Image.asset('images/icon_search.png'),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Search User',
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 32,
+            ),
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(((context, index) {
+                return _getItemGrid();
+              }), childCount: 100),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: 110,
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 10),
+            ),
+            SliverPadding(padding: EdgeInsets.only(top: 50))
+          ],
+        ),
+        Positioned(
+          bottom: 47,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 45, vertical: 13),
+              child: Text(
+                'send',
+                style: TextStyle(fontFamily: 'GB', fontSize: 16),
               ),
-            ],
+            ),
           ),
         ),
-        SliverGrid(
-          delegate: SliverChildBuilderDelegate(((context, index) {
-            return _getItemGrid();
-          }), childCount: 100),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisExtent: 110,
-              crossAxisCount: 4,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 10),
-        )
       ],
     );
   }
