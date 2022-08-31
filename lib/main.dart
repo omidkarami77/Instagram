@@ -3,7 +3,9 @@ import 'package:instagram/login.dart';
 import 'package:instagram/screens/activity_screen.dart';
 import 'package:instagram/screens/add_content.dart';
 import 'package:instagram/screens/home_screens.dart';
+import 'package:instagram/screens/main_screen.dart';
 import 'package:instagram/screens/search_screen.dart';
+import 'package:instagram/screens/user_profile_screen.dart';
 
 void main() {
   runApp(Application());
@@ -33,17 +35,31 @@ class Application extends StatelessWidget {
           ),
         ),
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(
+              duration: 3,
+              goToPage: MainScreen(),
+            ),
+        // '/': (context) => SplashFuturePage(),
+        '/home': (context) => MainScreen(),
+      },
       debugShowCheckedModeBanner: false,
-      home: ActivityScreen(),
     );
   }
 }
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  int duration = 0;
+  Widget goToPage;
 
+  SplashScreen({required this.duration, required this.goToPage});
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(seconds: this.duration), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => this.goToPage));
+    });
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(

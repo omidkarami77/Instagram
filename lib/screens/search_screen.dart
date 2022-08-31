@@ -50,33 +50,6 @@ class SearchScreen extends StatelessWidget {
           ),
         ],
       )),
-      bottomNavigationBar: Container(
-        height: 63,
-        width: 428,
-        decoration: BoxDecoration(
-          color: Color(0xff272B40),
-          borderRadius: const BorderRadius.only(
-              bottomRight: Radius.circular(15),
-              topRight: Radius.circular(15),
-              topLeft: Radius.circular(15),
-              bottomLeft: Radius.circular(15)),
-        ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Image.asset("images/icon_home.png"),
-          Image.asset("images/icon_search.png"),
-          Image.asset("images/icon_add.png"),
-          Image.asset("images/heart.png"),
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            child: Container(
-              height: 35,
-              width: 35,
-              color: Colors.amber,
-              child: Image.asset('images/omid.jpeg'),
-            ),
-          ),
-        ]),
-      ),
     );
   }
 
@@ -97,7 +70,7 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
-                      child: Image.asset('images/icon_search.png')),
+                      child: Image.asset('images/icon_search_not_active.png')),
                   SizedBox(
                     width: 15,
                   ),
